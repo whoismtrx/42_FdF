@@ -12,7 +12,6 @@ int main()
 {
 	t_data	data;
 
-
 	data.mlx = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx, 1920, 1080, "FdF");
 	data.img = mlx_new_image(data.mlx, 1920, 1080);
