@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_xtoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 15:27:37 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/25 01:18:35 by orekabe          ###   ########.fr       */
+/*   Created: 2022/05/25 03:19:16 by orekabe           #+#    #+#             */
+/*   Updated: 2022/05/26 04:05:49 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_atoi(const char *str)
+long	ft_xtoi(const char *str)
 {
-	int		i;
+	long	i;
 	long	number;
-	int		signe;
+	int		b;
 
 	i = 0;
 	number = 0;
-	signe = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+	while (str[i] && str[i] != 'x')
 		i++;
-	if (str[i] == '+' || str[i] == '-')
+	if (str[i] == 'x')
+		i++;
+	while (str[i])
 	{
-		if (str[i] == '-')
-			signe *= -1;
+		if (ft_isdigit(str[i]))
+			number = (number * 16) + (str[i] - 48);
+		else if (str[i] >= 'a' && str[i] <= 'f')
+			number = (number * 16) + (str[i] - 87);
+		else if (str[i] >= 'A' && str[i] <= 'F')
+			number = (number * 16) + (str[i] - 55);
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		number = (number * 10) + (str[i] - 48);
-		i++;
-	}
-	return (number * signe);
+	return (number);
 }

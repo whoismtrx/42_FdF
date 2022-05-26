@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:00:58 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/24 01:05:36 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/05/26 02:12:21 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*get_line(char *str)
 	i = 0;
 	while (str[i] && str[i] != '\n')
 		i++;
-	ptr = (char *)malloc(sizeof(char) * i + 2);
+	ptr = (char *)malloc(sizeof(char) * i + 1);
 	if (!ptr)
 		return (NULL);
 	i = 0;

@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_ishexa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 15:27:37 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/25 01:18:35 by orekabe          ###   ########.fr       */
+/*   Created: 2022/05/25 04:29:39 by orekabe           #+#    #+#             */
+/*   Updated: 2022/05/25 04:31:00 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_atoi(const char *str)
+int	ft_ishexa(int c)
 {
-	int		i;
-	long	number;
-	int		signe;
-
-	i = 0;
-	number = 0;
-	signe = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			signe *= -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		number = (number * 10) + (str[i] - 48);
-		i++;
-	}
-	return (number * signe);
+	if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f')
+		|| (c >= 'A' && c <= 'F'))
+		return (1);
+	return (0);
 }

@@ -23,7 +23,8 @@ typedef struct s_data
 	char	**map;
 	int		**z;
 	int		**c;
-	int		size;
+	int		x;
+	int		y;
 }				t_data;
 
 char	*get_next_line(int fd);
@@ -31,6 +32,10 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(char *s, int c);
 char	*ft_read(char *str, int fd);
 int		ft_strlen(const char *s);
+char	**ft_split(char const *s, char c);
 int		ft_atoi(const char *str);
+long	ft_xtoi(const char *str);
+int		ft_isdigit(int c);
+int		ft_ishexa(int c);
 
 #endif
