@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 02:44:55 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/26 04:30:44 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/05/27 16:35:14 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_get_map_size(t_data *data, char **argv)
 int	ft_get_line_size(char **line)
 {
 	int	size;
-	int	i;
 	int	j;
 
 	size = 0;
@@ -71,7 +70,6 @@ void	ft_fill_map(t_data *data, char **argv)
 	}	
 }
 
-
 void	ft_fill_data(t_data *data)
 {
 	int		i;
@@ -85,12 +83,13 @@ void	ft_fill_data(t_data *data)
 	while (j < data->y)
 	{
 		i = 0;
-		line = ft_split(data->map[j], ' ');
+		line = ft_split(&data->map[j][i], ' ');
 		// for(int k = 0; line[k]; k++){
-		// 	printf("%s", line[k]);
+		// 	printf("%s ", line[k]);
 		// }
 		len = ft_get_line_size(line);
-		// printf("|%d|",len);
+		// printf("|%d|\n",len);
+		// sleep(4);
 		if (i == 0 && b)
 		{
 			data->x = len;
@@ -104,15 +103,18 @@ void	ft_fill_data(t_data *data)
 			return ;
 		while (i < data->x)
 		{
+			// printf("%s\n", line[i]);
+			// if (line[i])
 			data->z[j][i] = ft_atoi(line[i]);
-			data->c[j][i] = ft_xtoi(line[i]);
+			// data->c[j][i] = ft_xtoi(line[i]);
 			i++;
 		}
 		j++;
+	free(line);
 	}
 }
 
-void	ft_allocate_map(t_data *data, char **argv)
+void	ft_allocate(t_data *data, char **argv)
 {
 	ft_get_map_size(data, argv);
 	data->map = (char **)malloc(sizeof(char *) * data->y);
@@ -132,9 +134,10 @@ int main(int argc, char **argv)
 {
 	t_data	data;
 	
-	ft_allocate_map(&data, argv);
+	if (argc != 2)
+		exit (1);
+	ft_allocate(&data, argv);
 	for(int i = 0; i < data.y; i++){
-			// printf("|%d|", ft_get_line_size(ft_split(data.map[i], ' ')));
 		for(int j = 0; j < data.x; j++){
 			printf("%d ",data.z[i][j]);	
 		}

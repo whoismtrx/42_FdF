@@ -33,6 +33,8 @@ char	*ft_strchr(char *s, int c);
 char	*ft_read(char *str, int fd);
 int		ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strdup(const char *src);
 int		ft_atoi(const char *str);
 long	ft_xtoi(const char *str);
 int		ft_isdigit(int c);

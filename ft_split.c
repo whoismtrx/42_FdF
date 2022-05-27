@@ -6,95 +6,88 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 01:18:48 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/24 18:58:14 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/05/27 01:11:31 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static	char	**free_split(char **ptr)
+static char	**ft_free(char **tab, int i)
 {
-	free (ptr);
-	ptr = NULL;
-	return (ptr);
+	while (i >= 0)
+	{
+		free(tab[i]);
+		i--;
+	}
+	free(tab);
+	tab = NULL;
+	return (NULL);
 }
 
-static	size_t	ft_count_strings(char const *s, char c)
+static int	count_word(char const *str, char c)
 {
-	size_t	i;
-	size_t	k;
+	int	i;
+	int	count;
+	int	j;
 
-	i = 0;
-	k = 0;
-	while (s[i])
-	{
-		if ((s[i] == c && s[i + 1] != c) && i != 0 && s[i + 1] != '\0')
-			k++;
-		i++;
-	}
-	return (k + 2);
-}
-
-static	char	*ft_allocate(char const *s, char c)
-{
-	size_t	i;
-	size_t	j;
-	char	*ptr;
-
-	i = 0;
-	while (s[i] && s[i] != c)
-		i++;
-	ptr = malloc(i + 1);
-	if (!ptr)
-	{
-		free (ptr);
-		ptr = NULL;
-		return (ptr);
-	}
 	j = 0;
-	while (j < i)
+	i = 0;
+	count = 0;
+	while (str[i] != '\0')
 	{
-		ptr[j] = s[j];
-		j++;
-	}
-	ptr[j] = '\0';
-	return (ptr);
-}
-
-static	char	**ft_split_beta(char const *s, char c)
-{
-	int		i;
-	int		j;
-	int		boool;
-	char	**ptr;
-
-	i = -1;
-	j = 0;
-	boool = 1;
-	ptr = (char **)malloc(ft_count_strings(s, c) * sizeof(char *));
-	if (!ptr)
-		return (free_split(ptr));
-	while (s[++i])
-	{
-		if (s[i] != c)
+		if (str[i] != c && j == 0)
 		{
-			if (boool)
-				ptr[j++] = ft_allocate(s + i, c);
-			boool = 0;
+			count++;
+			j = 1;
 		}
-		else
-			boool = 1;
+		else if (str[i] == c && j == 1)
+			j = 0;
+		i++;
 	}
-	ptr[j] = NULL;
-	return (ptr);
+	return (count);
+}
+
+static int	count_char(char const *str, char c)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[count] != c)
+			count++;
+		i++;
+	}
+	return (count);
 }
 
 char	**ft_split(char const *s, char c)
 {
+	int		i;
+	int		j;
 	char	**ptr;
+	int		len;
 
+	i = -1;
+	j = 0;
 	if (!s)
 		return (NULL);
-	ptr = ft_split_beta(s, c);
+	len = count_word(s, c);
+	ptr = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!ptr)
+		return (NULL);
+	while (++i < len)
+	{
+		while (*s == c)
+			s++;
+		j = count_char(s, c);
+		ptr[i] = ft_substr(s, 0, j);
+		if (!ptr)
+			ft_free(ptr, i);
+		s += j;
+	}
+	ptr[i] = NULL;
 	return (ptr);
 }

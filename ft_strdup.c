@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_xtoi.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/25 03:19:16 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/27 00:26:13 by orekabe          ###   ########.fr       */
+/*   Created: 2022/05/27 01:13:11 by orekabe           #+#    #+#             */
+/*   Updated: 2022/05/27 01:13:17 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-long	ft_xtoi(const char *str)
+char	*ft_strdup(const char *src)
 {
-	long	i;
-	long	number;
-	// int		b;
+	char	*str;
+	int		i;
 
 	i = 0;
-	number = 0;
-	while (str[i] && str[i] != 'x')
+	while (src[i])
 		i++;
-	if (str[i] == 'x')
-		i++;
-	while (str[i])
+	str = (char *) malloc(sizeof(char) * (i + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (src[i])
 	{
-		if (ft_isdigit(str[i]))
-			number = (number * 16) + (str[i] - 48);
-		else if (str[i] >= 'a' && str[i] <= 'f')
-			number = (number * 16) + (str[i] - 87);
-		else if (str[i] >= 'A' && str[i] <= 'F')
-			number = (number * 16) + (str[i] - 55);
+		str[i] = src[i];
 		i++;
 	}
-	return (number);
+	str[i] = '\0';
+	return (str);
 }
