@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_get_lmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 01:12:17 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/30 15:17:38 by orekabe          ###   ########.fr       */
+/*   Created: 2022/05/30 12:35:21 by orekabe           #+#    #+#             */
+/*   Updated: 2022/05/30 12:35:31 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_get_lmap(t_data *data, char *lmap, char **argv)
 {
-	char	*pt;
-	size_t	j;
+	int		fd;
+	char	*ret;
 
-	if (!s)
-		return (NULL);
-	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
-	pt = (char *) malloc(sizeof(char) * (len + 1));
-	if (!pt)
-		return (NULL);
-	j = 0;
-	while (s[start] && j < len)
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		exit (1);
+	ret = get_next_line(fd);
+	lmap = ft_strjoin(lmap, ret);
+	while (ret)
 	{
-		pt[j] = s[start];
-		j++;
-		start++;
+		free(ret);
+		ret = get_next_line(fd);
+		lmap = ft_strjoin(lmap, ret);
 	}
-	pt[j] = 0;
-	return (pt);
+	close(fd);
+	return (lmap);
 }

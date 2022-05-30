@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_find_c.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 01:12:17 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/30 15:17:38 by orekabe          ###   ########.fr       */
+/*   Created: 2022/05/28 18:06:31 by orekabe           #+#    #+#             */
+/*   Updated: 2022/05/30 15:14:57 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int	ft_find_c(char *str, char c)
 {
-	char	*pt;
-	size_t	j;
+	int	i;
 
-	if (!s)
-		return (NULL);
-	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
-	pt = (char *) malloc(sizeof(char) * (len + 1));
-	if (!pt)
-		return (NULL);
-	j = 0;
-	while (s[start] && j < len)
+	i = 0;
+	while (str[i])
 	{
-		pt[j] = s[start];
-		j++;
-		start++;
+		if (str[i] == c)
+			return (1);
+		i++;
 	}
-	pt[j] = 0;
-	return (pt);
+	return (0);
 }

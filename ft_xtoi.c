@@ -6,13 +6,13 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 03:19:16 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/28 04:57:45 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/05/30 15:17:56 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		ft_get_minus(char c)
+int	ft_get_minus(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (48);
@@ -22,6 +22,7 @@ int		ft_get_minus(char c)
 		return (55);
 	return (0);
 }
+
 long	ft_xtoi(const char *str)
 {
 	long	number;

@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_put_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 01:12:17 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/30 15:17:38 by orekabe          ###   ########.fr       */
+/*   Created: 2022/05/30 09:02:06 by orekabe           #+#    #+#             */
+/*   Updated: 2022/05/30 15:17:10 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_put_error(void)
 {
-	char	*pt;
-	size_t	j;
-
-	if (!s)
-		return (NULL);
-	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
-	pt = (char *) malloc(sizeof(char) * (len + 1));
-	if (!pt)
-		return (NULL);
-	j = 0;
-	while (s[start] && j < len)
-	{
-		pt[j] = s[start];
-		j++;
-		start++;
-	}
-	pt[j] = 0;
-	return (pt);
+	write(2, "INVALID MAP\n", 12);
+	exit(1);
 }

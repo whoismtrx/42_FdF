@@ -1,34 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_free_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 01:13:11 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/30 15:17:30 by orekabe          ###   ########.fr       */
+/*   Created: 2022/05/30 09:25:46 by orekabe           #+#    #+#             */
+/*   Updated: 2022/05/30 15:15:28 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*ft_strdup(const char *src)
+void	ft_free_map(t_data *data, char c)
 {
-	char	*str;
 	int		i;
+	char	**str;
 
 	i = 0;
-	while (src[i])
-		i++;
-	str = (char *) malloc(sizeof(char) * (i + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (src[i])
+	if (c == 'm')
+		str = data->map;
+	else
+		str = data->line;
+	while (str[i])
 	{
-		str[i] = src[i];
+		free(str[i]);
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	free(str);
+}
+
+void	ft_free_zc(t_data *data, char c)
+{
+	int	i;
+	int	**tab;
+
+	i = 0;
+	if (c == 'z')
+		tab = data->z;
+	else
+		tab = data->c;
+	while (i < data->y)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
+void	ft_free_data(t_data *data, char c)
+{
+	int	i;
+
+	i = 0;
+	if (c == 'm' || c == 'l')
+		ft_free_map(data, c);
+	else
+		ft_free_zc(data, c);
 }
