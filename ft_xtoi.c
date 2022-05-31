@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 03:19:16 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/30 15:17:56 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/05/31 10:16:12 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ long	ft_xtoi(const char *str)
 			number = (number * 16) + (str[i] - minus);
 			i++;
 		}
+		if (number > 16777215)
+			number = 16777215;
 	}
 	else
 		number = ft_atoi(str + i + 1);

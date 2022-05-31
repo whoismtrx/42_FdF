@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 02:44:55 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/30 15:12:33 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/05/31 19:00:32 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		exit (1);
 	ft_allocate(&data, argv);
-	// for(int i = 0; i < data.y; i++){
-	// 	for(int j = 0; j < data.x; j++){
-	// 		printf("%d ",data.z[i][j]);	
-	// 	}
-	// 	printf("\n");
-	// }
+	for(int i = 0; i < data.y; i++){
+		for(int j = 0; j < data.x; j++){
+			printf("%d ",data.c[i][j]);	
+		}
+		printf("\n");
+	}
 	ft_free_data(&data, 'z');
 	ft_free_data(&data, 'c');
 }
