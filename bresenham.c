@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 02:44:55 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/01 23:43:20 by orekabe          ###   ########.fr       */
+/*   Created: 2022/06/01 23:57:24 by orekabe           #+#    #+#             */
+/*   Updated: 2022/06/02 00:08:27 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int argc, char **argv)
+void	bresenham(t_data *data, t_graph *draw)
 {
-	t_data	data;
+	int	x;
+	int	y;
+	int	i;
+	int	j;
+	int	f;
+	int	fi;
 
-	if (argc != 2)
-		exit (1);
-	ft_allocate(&data, argv);
-	// for(int i = 0; i < data.y; i++){
-	// 	for(int j = 0; j < data.x; j++){
-	// 		printf("%d ",data.c[i][j]);	
-	// 	}
-	// 	printf("\n");
-	// }
+	i = 0;
+	j = 0;
+	x = i;
+	j = i;
+	while (j < data->y)
+	{
+		while (i < data->x)
+		{
+			
+		}
+		
+	}
+	
 }
