@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:12:44 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/30 15:12:45 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/03 23:37:07 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ typedef struct s_data
 	int		x;
 	int		y;
 }				t_data;
+
+typedef struct s_bresen
+{
+	int	x0;
+	int	x1;
+	int	y0;
+	int	y1;
+	int	dx;
+	int	dy;
+	int	dp1;
+	int	dp2;
+	int	a;
+}				t_bresen;
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
