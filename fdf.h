@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:12:44 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/03 23:37:07 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:30:27 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,6 @@ void	ft_fill_data(t_data *data);
 int		ft_get_line_size(char **line);
 void	ft_get_map_size(t_data *data, char **argv);
 char	*ft_get_lmap(t_data *data, char *lmap, char **argv);
+void	my_mlx_pixel_put(t_graph *graph, int x, int y, int color);
+void	bresenham(t_data *data, t_bresen *bresen, t_graph *graph, int x0, int x1, int y0, int y1);
 #endif
