@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:12:44 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/05 20:30:27 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/07 00:59:33 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <fcntl.h>
+# include <math.h>
 
 typedef struct s_graph
 {
@@ -50,6 +51,8 @@ typedef struct s_bresen
 	int	dy;
 	int	dp1;
 	int	dp2;
+	int	sx;
+	int	sy;
 	int	a;
 }				t_bresen;
 

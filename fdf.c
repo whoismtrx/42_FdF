@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 02:44:55 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/06 11:36:40 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/07 01:32:03 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,15 @@ int	main(int argc, char **argv)
 	graph.add = mlx_get_data_addr(graph.img, &graph.bpp, &graph.ll, &graph.endian);
 	for(int j = 0; j < data.y; j++)
 	{
-		for(int i = 0; i < data.x; i++)
+		int i = 0;
+		while (i < data.x)
 		{
-			bresenham(&data, &bresen, &graph, i * 10, (i + 1) * 10, j * 10, (j + 1) * 10);
-			// bresenham(&data, &bresen, &graph, i * 10, i * 10, j * 10, (j + 1)  * 10);
+			bresenham(&data, &bresen, &graph, i * 10, (i + 1) * 10, j * 10, j * 10);
+			bresenham(&data, &bresen, &graph, i * 10, i * 10, j * 10, (j + 1)  * 10);
+			i++;
 		}
 	}
-	// bresenham(&data, &bresen, &graph, 100, 100, 300, 100);
+	// bresenham(&data, &bresen, &graph, 300, 100, 100, 300);
 	mlx_put_image_to_window(graph.mlx, graph.mlx_win, graph.img, 0, 0);
 	// mlx_pixel_put(graph.mlx, graph.mlx_win, 15, 15, 16777215);
 	// bresenham(&data, &bresen, &graph, 220, 260, 200, 240);
