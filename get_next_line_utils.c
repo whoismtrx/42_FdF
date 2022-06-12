@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:38:54 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/27 23:32:58 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/12 00:32:06 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ char	*ft_read(char *str, int fd)
 	int		rd;
 
 	rd = 1;
-	ptr = (char *)malloc(2);
+	ptr = (char *)malloc(1000000001);
 	if (!ptr)
 		return (NULL);
 	while (!ft_strchr(str, '\n') && rd != 0)
 	{
-		rd = read(fd, ptr, 1);
+		rd = read(fd, ptr, 1000000000);
 		if (rd == -1)
 		{
 			free (ptr);

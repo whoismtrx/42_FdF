@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 23:57:24 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/09 05:42:54 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/12 00:59:09 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,17 @@ int		ft_get_step(int a, int b)
 	return (-1);
 }
 
-void	zoom(t_bresen *bresen)
-{	bresen->x0 *= 20;
-	bresen->x1 *= 20;
-	bresen->y0 *= 20;
-	bresen->y1 *= 20;
+void	zoom(t_bresen *bresen, t_data *data)
+{	bresen->x0 *= 2;
+	bresen->x1 *= 2;
+	bresen->y0 *= 2;
+	bresen->y1 *= 2;
 	// bresen->z0 *= 20;
 	// bresen->z1 *= 20;
+	bresen->x0 -= (data->x * 2) /2;
+	bresen->x1 -= (data->x * 2) /2;
+	bresen->y0 -= (data->y * 2) /2;
+	bresen->y1 -= (data->y * 2) /2;
 }
 
 void	iso(t_bresen *bresen)
@@ -46,6 +50,18 @@ void	iso(t_bresen *bresen)
 	bresen->y1 = -bresen->z1 + (px1 + py1) * sin(0.523599);
 }
 
+void	center(t_bresen *bresen, t_data *data)
+{
+	int	cx;
+	int	cy;
+	cx = 1920 / 2;
+	cy = 1080 / 2;
+	bresen->x0 += cx;
+	bresen->y0 += cy;
+	bresen->x1 += cx;
+	bresen->y1 += cy;
+}
+
 void	bresenham(t_data *data, t_bresen *bresen, t_graph *graph, int x0, int x1, int y0, int y1)
 {
 	bresen->x0 = x0;
@@ -54,8 +70,9 @@ void	bresenham(t_data *data, t_bresen *bresen, t_graph *graph, int x0, int x1, i
 	bresen->y1 = y1;
 	bresen->z0 = data->z[y0][x0];
 	bresen->z1 = data->z[y1][x1];
-	zoom(bresen);
-	iso(bresen);
+	zoom(bresen, data);
+	// iso(bresen);
+	center(bresen, data);
 	bresen->dx = abs(bresen->x1 - bresen->x0);
 	bresen->sx = ft_get_step(bresen->x0, bresen->x1);
 	bresen->dy = -abs(bresen->y1 - bresen->y0);
@@ -64,7 +81,7 @@ void	bresenham(t_data *data, t_bresen *bresen, t_graph *graph, int x0, int x1, i
 	while (1)
 	{
 		if (bresen->x0 >= 0 && bresen->x0 <= 1920 && bresen->y0 >= 0 && bresen->y0 <= 1080)
-			my_mlx_pixel_put(graph, bresen->x0, bresen->y0, 16777215);
+			my_mlx_pixel_put(graph, bresen->x0, bresen->y0, data->c[y0][x0]);
 		if (bresen->x0 == bresen->x1 && bresen->y0 == bresen->y1)
 			break;
 		bresen->dp2 = 2 * bresen->dp1;
