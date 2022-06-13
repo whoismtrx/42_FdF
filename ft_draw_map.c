@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_lmap.c                                      :+:      :+:    :+:   */
+/*   ft_draw_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 12:35:21 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/13 02:19:32 by orekabe          ###   ########.fr       */
+/*   Created: 2022/06/12 22:28:42 by orekabe           #+#    #+#             */
+/*   Updated: 2022/06/13 02:19:05 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*ft_get_lmap(t_data *data, char *lmap, char **argv)
+void	ft_draw_map(t_win *win, t_data *data, t_bresen *bresen)
 {
-	int		fd;
-	char	*ret;
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		exit (1);
-	ret = get_next_line(fd);
-	lmap = ft_strjoin(lmap, ret);
-	while (ret)
+	bresen->y = 0;
+	while (bresen->y < data->y)
 	{
-		free(ret);
-		ret = get_next_line(fd);
-		lmap = ft_strjoin(lmap, ret);
+		bresen->x = 0;
+		while (bresen->x < data->x)
+		{
+			if (bresen->x < data->x -1)
+				bresenham(data, bresen, win, 1);
+			if (bresen->y < data->y -1)
+				bresenham(data, bresen, win, 2);
+			bresen->x++;
+		}
+		bresen->y++;
 	}
-	close(fd);
-	return (lmap);
 }

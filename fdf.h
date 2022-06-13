@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:12:44 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/09 04:20:30 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/13 02:18:44 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
+# define BUFFER_SIZE 2147483646
+# define WIN_W	1920
+# define WIN_H	1080
 
-typedef struct s_graph
+typedef struct s_win
 {
 	void	*mlx;
 	void	*mlx_win;
@@ -29,7 +32,7 @@ typedef struct s_graph
 	int		bpp;
 	int		ll;
 	int		endian;
-}				t_graph;
+}				t_win;
 
 typedef struct s_data
 {
@@ -43,6 +46,8 @@ typedef struct s_data
 
 typedef struct s_bresen
 {
+	int	x;
+	int	y;
 	int	x0;
 	int	x1;
 	int	y0;
@@ -82,6 +87,13 @@ void	ft_fill_data(t_data *data);
 int		ft_get_line_size(char **line);
 void	ft_get_map_size(t_data *data, char **argv);
 char	*ft_get_lmap(t_data *data, char *lmap, char **argv);
-void	my_mlx_pixel_put(t_graph *graph, int x, int y, int color);
-void	bresenham(t_data *data, t_bresen *bresen, t_graph *graph, int x0, int x1, int y0, int y1);
+void	my_mlx_pixel_put(t_win *win, int x, int y, int color);
+void	bresenham(t_data *data, t_bresen *bresen, t_win *win, int b);
+void	my_mlx_pixel_put(t_win *win, int x, int y, int color);
+void	ft_draw_map(t_win *win, t_data *data, t_bresen *bresen);
+void	ft_get_win(t_win *win);
+void	init(t_bresen *bresen, t_data *data, int b);
+void	center(t_bresen *bresen, t_data *data);
+void	iso(t_bresen *bresen);
+void	distance(t_bresen *bresen, t_data *data);
 #endif

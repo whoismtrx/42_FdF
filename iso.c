@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_lmap.c                                      :+:      :+:    :+:   */
+/*   iso.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 12:35:21 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/13 02:19:32 by orekabe          ###   ########.fr       */
+/*   Created: 2022/06/13 01:15:49 by orekabe           #+#    #+#             */
+/*   Updated: 2022/06/13 02:20:40 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*ft_get_lmap(t_data *data, char *lmap, char **argv)
+void	iso(t_bresen *bresen)
 {
-	int		fd;
-	char	*ret;
+	int	px0;
+	int	py0;
+	int	px1;
+	int	py1;
 
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		exit (1);
-	ret = get_next_line(fd);
-	lmap = ft_strjoin(lmap, ret);
-	while (ret)
-	{
-		free(ret);
-		ret = get_next_line(fd);
-		lmap = ft_strjoin(lmap, ret);
-	}
-	close(fd);
-	return (lmap);
+	px0 = bresen->x0;
+	px1 = bresen->x1;
+	py0 = bresen->y0;
+	py1 = bresen->y1;
+	bresen->x0 = (px0 - py0) * cos(0.523599);
+	bresen->y0 = -bresen->z0 + (px0 + py0) * sin(0.523599);
+	bresen->x1 = (px1 - py1) * cos(0.523599);
+	bresen->y1 = -bresen->z1 + (px1 + py1) * sin(0.523599);
 }

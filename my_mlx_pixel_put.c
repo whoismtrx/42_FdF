@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_lmap.c                                      :+:      :+:    :+:   */
+/*   my_mlx_pixel_put.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 12:35:21 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/13 02:19:32 by orekabe          ###   ########.fr       */
+/*   Created: 2022/06/12 22:05:24 by orekabe           #+#    #+#             */
+/*   Updated: 2022/06/13 02:21:18 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*ft_get_lmap(t_data *data, char *lmap, char **argv)
+void	my_mlx_pixel_put(t_win *win, int x, int y, int color)
 {
-	int		fd;
-	char	*ret;
+	char	*dst;
 
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		exit (1);
-	ret = get_next_line(fd);
-	lmap = ft_strjoin(lmap, ret);
-	while (ret)
-	{
-		free(ret);
-		ret = get_next_line(fd);
-		lmap = ft_strjoin(lmap, ret);
-	}
-	close(fd);
-	return (lmap);
+	dst = win->add + (y * win->ll + x * (win->bpp / 8));
+	*(unsigned int *)dst = color;
 }

@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_lmap.c                                      :+:      :+:    :+:   */
+/*   ft_get_win.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 12:35:21 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/13 02:19:32 by orekabe          ###   ########.fr       */
+/*   Created: 2022/06/12 22:28:16 by orekabe           #+#    #+#             */
+/*   Updated: 2022/06/12 23:10:31 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*ft_get_lmap(t_data *data, char *lmap, char **argv)
+void	ft_get_win(t_win *win)
 {
-	int		fd;
-	char	*ret;
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		exit (1);
-	ret = get_next_line(fd);
-	lmap = ft_strjoin(lmap, ret);
-	while (ret)
-	{
-		free(ret);
-		ret = get_next_line(fd);
-		lmap = ft_strjoin(lmap, ret);
-	}
-	close(fd);
-	return (lmap);
+	win->mlx = mlx_init();
+	win->mlx_win = mlx_new_window(win->mlx, WIN_W, WIN_H, "FDF");
+	win->img = mlx_new_image(win->mlx, WIN_W, WIN_H);
+	win->add = mlx_get_data_addr(win->img, &win->bpp, &win->ll, &win->endian);
 }

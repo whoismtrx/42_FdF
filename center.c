@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_lmap.c                                      :+:      :+:    :+:   */
+/*   center.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 12:35:21 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/13 02:19:32 by orekabe          ###   ########.fr       */
+/*   Created: 2022/06/13 01:12:31 by orekabe           #+#    #+#             */
+/*   Updated: 2022/06/13 02:17:10 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*ft_get_lmap(t_data *data, char *lmap, char **argv)
+void	center(t_bresen *bresen, t_data *data)
 {
-	int		fd;
-	char	*ret;
+	int	cx;
+	int	cy;
 
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		exit (1);
-	ret = get_next_line(fd);
-	lmap = ft_strjoin(lmap, ret);
-	while (ret)
-	{
-		free(ret);
-		ret = get_next_line(fd);
-		lmap = ft_strjoin(lmap, ret);
-	}
-	close(fd);
-	return (lmap);
+	cx = WIN_W / 2;
+	cy = WIN_H / 2;
+	bresen->x0 += cx;
+	bresen->y0 += cy;
+	bresen->x1 += cx;
+	bresen->y1 += cy;
 }

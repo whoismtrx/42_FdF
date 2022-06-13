@@ -6,77 +6,72 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:38:54 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/12 00:32:06 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/12 15:48:38 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*ptr;
-	int		i;
-	int		j;
+// int	len(char *str)
+// {
+// 	int	i;
 
-	if (!s1)
-	{
-		s1 = (char *)malloc(sizeof(char));
-		*s1 = '\0';
-	}
-	if (!s2)
-		return (s1);
-	i = -1;
-	j = 0;
-	ptr = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!ptr)
-		return (NULL);
-	while (s1[++i])
-		ptr[i] = s1[i];
-	while (s2[j])
-		ptr[i++] = s2[j++];
-	ptr[i] = '\0';
-	free (s1);
-	return (ptr);
-}
+// 	i = 0;
+// 	while (str && str[i] != '\0')
+// 		i++;
+// 	return (i);
+// }
 
-char	*ft_strchr(char *s, int c)
-{
-	int		i;
+// int	check_next_ln(char *curr)
+// {
+// 	int	i;
+// 	int	j;
 
-	if (!s)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return (s + i);
-		i++;
-	}
-	if (c == 0)
-		return (s + i);
-	return (NULL);
-}
+// 	j = 0;
+// 	i = 0;
+// 	while (curr && curr[i])
+// 	{
+// 		if (curr[i] == '\n')
+// 			return (1);
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
-char	*ft_read(char *str, int fd)
-{
-	char	*ptr;
-	int		rd;
+// char	*ft_strjoin(char *s1, char *s2)
+// {
+// 	int		i;
+// 	int		k;
+// 	int		j;
+// 	char	*a;
 
-	rd = 1;
-	ptr = (char *)malloc(1000000001);
-	if (!ptr)
-		return (NULL);
-	while (!ft_strchr(str, '\n') && rd != 0)
-	{
-		rd = read(fd, ptr, 1000000000);
-		if (rd == -1)
-		{
-			free (ptr);
-			return (NULL);
-		}
-		ptr[rd] = '\0';
-		str = ft_strjoin(str, ptr);
-	}
-	free (ptr);
-	return (str);
-}
+// 	i = len(s1) + len(s2);
+// 	j = 0;
+// 	k = 0;
+// 	a = malloc(i + 1);
+// 	if (a == 0)
+// 		return (0);
+// 	while (s1 && s1[j] != '\0')
+// 	{
+// 		a[j] = s1[j];
+// 		j++;
+// 	}
+// 	while (s2 && s2[k] != '\0')
+// 		a[j++] = s2[k++];
+// 	a[j] = '\0';
+// 	if (s1)
+// 		free (s1);
+// 	return (a);
+// }
+
+// int	new_line_index(char	*all)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (all && all[i] != '\0' && all[i] != '\n')
+// 		i++;
+// 	if (all && all[i] == '\n')
+// 		i++;
+// 	return (i);
+// }
