@@ -6,26 +6,26 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:28:42 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/13 02:19:05 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/13 04:10:14 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_draw_map(t_win *win, t_data *data, t_bresen *bresen)
+void	ft_draw_map(t_win *win, t_data *data, t_draw *draw)
 {
-	bresen->y = 0;
-	while (bresen->y < data->y)
+	draw->y = 0;
+	while (draw->y < data->y)
 	{
-		bresen->x = 0;
-		while (bresen->x < data->x)
+		draw->x = 0;
+		while (draw->x < data->x)
 		{
-			if (bresen->x < data->x -1)
-				bresenham(data, bresen, win, 1);
-			if (bresen->y < data->y -1)
-				bresenham(data, bresen, win, 2);
-			bresen->x++;
+			if (draw->x < data->x -1)
+				bresenham(data, draw, win, 1);
+			if (draw->y < data->y -1)
+				bresenham(data, draw, win, 2);
+			draw->x++;
 		}
-		bresen->y++;
+		draw->y++;
 	}
 }

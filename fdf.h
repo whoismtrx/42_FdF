@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:12:44 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/13 02:18:44 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/13 04:09:53 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_data
 	int		y;
 }				t_data;
 
-typedef struct s_bresen
+typedef struct s_draw
 {
 	int	x;
 	int	y;
@@ -60,12 +60,7 @@ typedef struct s_bresen
 	int	dp2;
 	int	sx;
 	int	sy;
-	int	si;
-	int	sj;
-	int	a;
-	int	w;
-	int	h;
-}				t_bresen;
+}				t_draw;
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
@@ -88,12 +83,13 @@ int		ft_get_line_size(char **line);
 void	ft_get_map_size(t_data *data, char **argv);
 char	*ft_get_lmap(t_data *data, char *lmap, char **argv);
 void	my_mlx_pixel_put(t_win *win, int x, int y, int color);
-void	bresenham(t_data *data, t_bresen *bresen, t_win *win, int b);
+void	bresenham(t_data *data, t_draw *draw, t_win *win, int b);
 void	my_mlx_pixel_put(t_win *win, int x, int y, int color);
-void	ft_draw_map(t_win *win, t_data *data, t_bresen *bresen);
+void	ft_draw_map(t_win *win, t_data *data, t_draw *draw);
 void	ft_get_win(t_win *win);
-void	init(t_bresen *bresen, t_data *data, int b);
-void	center(t_bresen *bresen, t_data *data);
-void	iso(t_bresen *bresen);
-void	distance(t_bresen *bresen, t_data *data);
+void	init(t_draw *draw, t_data *data, int b);
+void	center(t_draw *draw, t_data *data);
+void	iso(t_draw *draw);
+void	distance(t_draw *draw, t_data *data);
+
 #endif

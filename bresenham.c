@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bresenham.c                                        :+:      :+:    :+:   */
+/*   drawham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,31 +12,31 @@
 
 #include "fdf.h"
 
-void	bresenham(t_data *data, t_bresen *bresen, t_win *win, int b)
+void	bresenham(t_data *data, t_draw *draw, t_win *win, int b)
 {
-	init(bresen, data, b);
+	init(draw, data, b);
 	while (1)
 	{
-		if ((bresen->x0 > 0 && bresen->x0 < 1920)
-			&& (bresen->y0 > 0 && bresen->y0 < 1080))
-			my_mlx_pixel_put(win, bresen->x0,
-				bresen->y0, data->c[bresen->y][bresen->x]);
-		if (bresen->x0 == bresen->x1 && bresen->y0 == bresen->y1)
+		if ((draw->x0 > 0 && draw->x0 < 1920)
+			&& (draw->y0 > 0 && draw->y0 < 1080))
+			my_mlx_pixel_put(win, draw->x0,
+				draw->y0, data->c[draw->y][draw->x]);
+		if (draw->x0 == draw->x1 && draw->y0 == draw->y1)
 			break ;
-		bresen->dp2 = 2 * bresen->dp1;
-		if (bresen->dp2 >= bresen->dy)
+		draw->dp2 = 2 * draw->dp1;
+		if (draw->dp2 >= draw->dy)
 		{
-			if (bresen->x0 == bresen->x1)
+			if (draw->x0 == draw->x1)
 				break ;
-			bresen->dp1 += bresen->dy;
-			bresen->x0 += bresen->sx;
+			draw->dp1 += draw->dy;
+			draw->x0 += draw->sx;
 		}
-		if (bresen->dp2 <= bresen->dx)
+		if (draw->dp2 <= draw->dx)
 		{
-			if (bresen->y0 == bresen->y1)
+			if (draw->y0 == draw->y1)
 				break ;
-			bresen->dp1 += bresen->dx;
-			bresen->y0 += bresen->sy;
+			draw->dp1 += draw->dx;
+			draw->y0 += draw->sy;
 		}
 	}
 }

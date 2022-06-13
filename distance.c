@@ -6,13 +6,13 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 01:18:41 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/13 02:18:06 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/13 04:08:40 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	distance(t_bresen *bresen, t_data *data)
+void	distance(t_draw *draw, t_data *data)
 {	
 	int	z;
 	int	dw;
@@ -23,14 +23,14 @@ void	distance(t_bresen *bresen, t_data *data)
 	z = ((dw * 30) / 100) / dm;
 	if (z < 2)
 		z = 2;
-	bresen->x0 *= z;
-	bresen->x1 *= z;
-	bresen->y0 *= z;
-	bresen->y1 *= z;
-	bresen->z0 *= z;
-	bresen->z1 *= z;
-	bresen->x0 -= (data->x * z) / 2;
-	bresen->x1 -= (data->x * z) / 2;
-	bresen->y0 -= (data->y * z) / 2;
-	bresen->y1 -= (data->y * z) / 2;
+	draw->x0 *= z;
+	draw->x1 *= z;
+	draw->y0 *= z;
+	draw->y1 *= z;
+	draw->z0 *= z;
+	draw->z1 *= z;
+	draw->x0 -= (data->x * z) / 2;
+	draw->x1 -= (data->x * z) / 2;
+	draw->y0 -= (data->y * z) / 2;
+	draw->y1 -= (data->y * z) / 2;
 }
