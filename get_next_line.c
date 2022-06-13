@@ -6,170 +6,76 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:00:58 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/12 15:49:14 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/13 02:47:47 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	len(char *str)
+char	*get_after_new_line(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str && str[i] != '\0')
-		i++;
-	return (i);
-}
-
-int	check_next_ln(char *curr)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	i = 0;
-	while (curr && curr[i])
-	{
-		if (curr[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int		i;
-	int		k;
-	int		j;
-	char	*a;
-
-	i = len(s1) + len(s2);
-	j = 0;
-	k = 0;
-	a = malloc(i + 1);
-	if (a == 0)
-		return (0);
-	while (s1 && s1[j] != '\0')
-	{
-		a[j] = s1[j];
-		j++;
-	}
-	while (s2 && s2[k] != '\0')
-		a[j++] = s2[k++];
-	a[j] = '\0';
-	if (s1)
-		free (s1);
-	return (a);
-}
-
-int	new_line_index(char	*all)
-{
-	int	i;
-
-	i = 0;
-	while (all && all[i] != '\0' && all[i] != '\n')
-		i++;
-	if (all && all[i] == '\n')
-		i++;
-	return (i);
-}
-int	cpy_next_line(char **all, int fd)
-{
-	char	*curr;
+	char	*ptr;
 	int		i;
 	int		j;
 
 	i = 0;
-	j = 1;
-	curr = malloc(BUFFER_SIZE + 1);
-	while (i == 0 && j != 0)
+	j = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (!str[i])
 	{
-		j = read(fd, curr, BUFFER_SIZE);
-		if (j == -1)
-		{
-			free (curr);
-			return (0);
-		}
-		if (j == 0)
-			break ;
-		curr[j] = '\0';
-		*all = ft_strjoin(*all, curr);
-		i = check_next_ln(*all);
+		free (str);
+		return (NULL);
 	}
-	free (curr);
-	return (1);
+	ptr = (char *)malloc(sizeof(char) * (ft_strlen(str) - i) + 1);
+	if (!ptr)
+		return (NULL);
+	while (str[++i])
+		ptr[j++] = str[i];
+	ptr[j] = '\0';
+	free (str);
+	return (ptr);
 }
 
-char	*ft_return(char *all, int i)
+char	*get_line(char *str)
 {
-	int		k;
-	char	*ret;
+	char	*ptr;
+	int		i;
 
-	k = 0;
-	ret = malloc (i + 1);
-	while (all && all[k] && all[k] != '\n')
+	if (!*str)
+		return (NULL);
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	ptr = (char *)malloc(sizeof(char) * i + 2);
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (str[i] && str[i] != '\n')
 	{
-		ret[k] = all[k];
-		k++;
+		ptr[i] = str[i];
+		i++;
 	}
-	if (all[k] == '\n')
-		ret[k++] = '\n';
-	ret[k] = '\0';
-	return (ret);
-}
-
-char	*edit_all(char *all, int i, int k)
-{
-	int		p;
-	char	*tmp;
-
-	if (len (all) - i)
+	if (str[i] == '\n')
 	{
-		tmp = malloc (len (all) + 1);
-		while (all && all[++k])
-			tmp[k] = all[k];
-		tmp[k] = '\0';
-		p = len (all);
-		free (all);
-		all = malloc (p - i + 1);
-		k = 0;
-		while (tmp[i])
-			all[k++] = tmp[i++];
-		all[k] = '\0';
-		free (tmp);
+		ptr[i] = str[i];
+		i++;
 	}
-	else
-	{
-		free (all);
-		all = NULL;
-	}
-	return (all);
+	ptr[i] = '\0';
+	return (ptr);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*all;
+	char static	*str;
 	char		*ret;
-	int			i;
-	int			k;
 
-	k = 0;
-	i = cpy_next_line(&all, fd);
-	if (i == 0)
-	{
-		free (all);
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	}
-	i = new_line_index(all);
-	if (i == 0)
-	{
-		free (all);
+	str = ft_read(str, fd);
+	if (!str)
 		return (NULL);
-	}
-	ret = ft_return (all, i);
-	k = -1;
-	all = edit_all(all, i, k);
+	ret = get_line(str);
+	str = get_after_new_line(str);
 	return (ret);
 }
