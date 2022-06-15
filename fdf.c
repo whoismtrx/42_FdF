@@ -6,13 +6,13 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 02:44:55 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/14 02:39:40 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/14 03:30:41 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_close(long long key)
+int	ft_close(long long key, t_win *win)
 {
 	if (key == 53 || key > BUFFER_SIZE + 1)
 		exit (0);
