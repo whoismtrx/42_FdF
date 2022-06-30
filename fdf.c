@@ -6,23 +6,38 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 02:44:55 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/14 03:30:41 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/30 01:40:25 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_close(long long key, t_win *win)
+int	ft_destroy(t_win *win)
 {
-	if (key == 53 || key > BUFFER_SIZE + 1)
+	ft_free_data(win->data, 'z');
+	ft_free_data(win->data, 'c');
+	mlx_destroy_image(win->mlx, win->img);
+	mlx_destroy_window(win->mlx, win->mlx_win);
+	exit (0);
+}
+
+int	ft_close(int key, t_win *win)
+{
+	if (key == 53)
+	{
+		ft_free_data(win->data, 'z');
+		ft_free_data(win->data, 'c');
+		mlx_destroy_image(win->mlx, win->img);
+		mlx_destroy_window(win->mlx, win->mlx_win);
 		exit (0);
+	}
 	return (0);
 }
 
 void	ft_hook(t_win *win)
 {
-	mlx_hook(win->mlx_win, 2, 0, ft_close, &win);
-	mlx_hook(win->mlx_win, 17, 1L << 17, ft_close, &win);
+	mlx_hook(win->mlx_win, 2, 0, ft_close, win);
+	mlx_hook(win->mlx_win, 17, 0, ft_destroy, win);
 }
 
 int	main(int argc, char **argv)
@@ -31,6 +46,7 @@ int	main(int argc, char **argv)
 	t_win		win;
 	t_draw		draw;
 
+	win.data = &data;
 	if (argc != 2)
 		exit (1);
 	ft_allocate(&data, argv);

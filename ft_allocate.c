@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 12:33:46 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/13 03:10:59 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/30 01:22:51 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_allocate(t_data *data, char **argv)
 	lmap = (char *)malloc(sizeof(char) * data->y);
 	if (!lmap)
 		return ;
-	lmap = ft_get_lmap(data, lmap, argv);
+	lmap = ft_get_lmap(lmap, argv);
 	data->map = ft_split(lmap, '\n');
 	data->z = (int **)malloc(sizeof(int *) * data->y);
 	if (!data->z)

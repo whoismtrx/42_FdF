@@ -6,13 +6,13 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 01:12:31 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/13 04:08:40 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/30 01:20:41 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	center(t_draw *draw, t_data *data)
+void	center(t_draw *draw)
 {
 	int	cx;
 	int	cy;

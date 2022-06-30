@@ -6,13 +6,13 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 01:12:17 by orekabe           #+#    #+#             */
-/*   Updated: 2022/05/30 15:17:38 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/06/30 01:23:34 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, int start, size_t len)
 {
 	char	*pt;
 	size_t	j;
