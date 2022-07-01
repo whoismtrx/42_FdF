@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 01:12:31 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/30 01:20:41 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/07/01 05:49:16 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	center(t_draw *draw)
 
 	cx = WIN_W / 2;
 	cy = WIN_H / 2;
-	draw->x0 += cx;
-	draw->y0 += cy;
-	draw->x1 += cx;
-	draw->y1 += cy;
+	draw->x0 += cx + draw->trans_x;
+	draw->y0 += cy + draw->trans_y;
+	draw->x1 += cx + draw->trans_x;
+	draw->y1 += cy + draw->trans_y;
 }

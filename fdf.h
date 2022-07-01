@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:12:44 by orekabe           #+#    #+#             */
-/*   Updated: 2022/07/01 04:37:53 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/07/01 19:52:44 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_draw
 	int zoom;
 	int trans_x;
 	int trans_y;
+	int alt;
 }				t_draw;
 
 typedef struct s_win

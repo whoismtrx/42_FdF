@@ -6,41 +6,21 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 02:44:55 by orekabe           #+#    #+#             */
-/*   Updated: 2022/07/01 04:48:09 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/07/01 20:00:06 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_translate(int key, t_win *win)
+void	ft_altitude(int key, t_win *win)
 {
-	if (key == 123)
+	if (key == 116)
 	{
 		mlx_destroy_image(win->mlx, win->img);
 		win->img = mlx_new_image(win->mlx, WIN_W, WIN_H);
 		win->add = mlx_get_data_addr(win->img, &win->bpp,
 			&win->ll, &win->endian);
-		win->draw->trans_x--;
-		ft_draw_map(win, win->data, win->draw);
-		mlx_put_image_to_window(win->mlx, win->mlx_win, win->img, 0, 0);
-	}
-	else if (key == 124)
-	{
-		mlx_destroy_image(win->mlx, win->img);
-		win->img = mlx_new_image(win->mlx, WIN_W, WIN_H);
-		win->add = mlx_get_data_addr(win->img, &win->bpp,
-			&win->ll, &win->endian);
-		win->draw->trans_x++;
-		ft_draw_map(win, win->data, win->draw);
-		mlx_put_image_to_window(win->mlx, win->mlx_win, win->img, 0, 0);
-	}
-	else if (key == 125)
-	{
-		mlx_destroy_image(win->mlx, win->img);
-		win->img = mlx_new_image(win->mlx, WIN_W, WIN_H);
-		win->add = mlx_get_data_addr(win->img, &win->bpp,
-			&win->ll, &win->endian);
-		win->draw->trans_y++;
+		win->draw->alt++;
 		ft_draw_map(win, win->data, win->draw);
 		mlx_put_image_to_window(win->mlx, win->mlx_win, win->img, 0, 0);
 	}
@@ -50,7 +30,51 @@ void	ft_translate(int key, t_win *win)
 		win->img = mlx_new_image(win->mlx, WIN_W, WIN_H);
 		win->add = mlx_get_data_addr(win->img, &win->bpp,
 			&win->ll, &win->endian);
-		win->draw->trans_y--;
+		win->draw->alt--;
+		ft_draw_map(win, win->data, win->draw);
+		mlx_put_image_to_window(win->mlx, win->mlx_win, win->img, 0, 0);
+	}
+}
+
+void	ft_translate(int key, t_win *win)
+{
+	if (key == 123)
+	{
+		mlx_destroy_image(win->mlx, win->img);
+		win->img = mlx_new_image(win->mlx, WIN_W, WIN_H);
+		win->add = mlx_get_data_addr(win->img, &win->bpp,
+			&win->ll, &win->endian);
+		win->draw->trans_x -= 10;
+		ft_draw_map(win, win->data, win->draw);
+		mlx_put_image_to_window(win->mlx, win->mlx_win, win->img, 0, 0);
+	}
+	else if (key == 124)
+	{
+		mlx_destroy_image(win->mlx, win->img);
+		win->img = mlx_new_image(win->mlx, WIN_W, WIN_H);
+		win->add = mlx_get_data_addr(win->img, &win->bpp,
+			&win->ll, &win->endian);
+		win->draw->trans_x += 10;
+		ft_draw_map(win, win->data, win->draw);
+		mlx_put_image_to_window(win->mlx, win->mlx_win, win->img, 0, 0);
+	}
+	else if (key == 125)
+	{
+		mlx_destroy_image(win->mlx, win->img);
+		win->img = mlx_new_image(win->mlx, WIN_W, WIN_H);
+		win->add = mlx_get_data_addr(win->img, &win->bpp,
+			&win->ll, &win->endian);
+		win->draw->trans_y += 10;
+		ft_draw_map(win, win->data, win->draw);
+		mlx_put_image_to_window(win->mlx, win->mlx_win, win->img, 0, 0);
+	}
+	else
+	{
+		mlx_destroy_image(win->mlx, win->img);
+		win->img = mlx_new_image(win->mlx, WIN_W, WIN_H);
+		win->add = mlx_get_data_addr(win->img, &win->bpp,
+			&win->ll, &win->endian);
+		win->draw->trans_y -= 10;
 		ft_draw_map(win, win->data, win->draw);
 		mlx_put_image_to_window(win->mlx, win->mlx_win, win->img, 0, 0);
 	}
@@ -137,6 +161,8 @@ int	ft_keys(int key, t_win *win)
 		ft_zoom(key, win);
 	if (key == 123 || key == 124 || key == 125 || key == 126)
 		ft_translate(key, win);
+	if (key == 116 || key == 121)
+		ft_altitude(key, win);
 	return (0);
 }
 
@@ -158,6 +184,7 @@ int	main(int argc, char **argv)
 	draw.zoom = 0;
 	draw.trans_x = 0;
 	draw.trans_y = 0;
+	draw.alt = 0;
 	if (argc != 2)
 		exit (1);
 	ft_allocate(&data, argv);
