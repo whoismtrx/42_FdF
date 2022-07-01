@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:28:42 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/13 04:10:14 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/07/01 02:53:09 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	ft_draw_map(t_win *win, t_data *data, t_draw *draw)
 		draw->x = 0;
 		while (draw->x < data->x)
 		{
-			if (draw->x < data->x -1)
+			if (draw->x < data->x - 1)
 				bresenham(data, draw, win, 1);
-			if (draw->y < data->y -1)
+			if (draw->y < data->y - 1)
 				bresenham(data, draw, win, 2);
 			draw->x++;
 		}

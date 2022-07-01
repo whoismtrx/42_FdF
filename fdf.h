@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:12:44 by orekabe           #+#    #+#             */
-/*   Updated: 2022/06/30 01:23:50 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/07/01 04:37:53 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,6 @@ typedef struct s_data
 	int		y;
 }				t_data;
 
-typedef struct s_win
-{
-	t_data	*data;
-	void	*mlx;
-	void	*mlx_win;
-	void	*img;
-	char	*add;
-	int		bpp;
-	int		ll;
-	int		endian;
-}				t_win;
-
 typedef struct s_draw
 {
 	int	x;
@@ -61,7 +49,25 @@ typedef struct s_draw
 	int	dp2;
 	int	sx;
 	int	sy;
+	int	pro;
+	int	dis;
+	int zoom;
+	int trans_x;
+	int trans_y;
 }				t_draw;
+
+typedef struct s_win
+{
+	t_data	*data;
+	t_draw	*draw;
+	void	*mlx;
+	void	*mlx_win;
+	void	*img;
+	char	*add;
+	int		bpp;
+	int		ll;
+	int		endian;
+}				t_win;
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
