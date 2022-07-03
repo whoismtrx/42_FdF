@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:12:44 by orekabe           #+#    #+#             */
-/*   Updated: 2022/07/03 00:08:00 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/07/03 03:46:16 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,5 @@ void	center(t_draw *draw);
 void	iso(t_draw *draw);
 void	distance(t_draw *draw, t_data *data);
 void	rotation(t_draw *draw);
-
+void	ft_put_str_to_win(t_win *win);
 #endif
