@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:12:44 by orekabe           #+#    #+#             */
-/*   Updated: 2022/07/03 03:46:16 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/07/03 05:47:05 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,37 +35,37 @@ typedef struct s_data
 
 typedef struct s_draw
 {
-	int	x;
-	int	y;
-	int z;
-	int	x0;
-	int	x1;
-	int	y0;
-	int	y1;
-	int	z0;
-	int	z1;
-	int	dx;
-	int	dy;
-	int	dp1;
-	int	dp2;
-	int	sx;
-	int	sy;
-	int	pro;
-	int	dis;
-	int	dist;
-	int zoom;
-	int trans_x;
-	int trans_y;
-	int alt;
-	int col;
-	int	c;
-	int	rot;
+	int		x;
+	int		y;
+	int		z;
+	int		x0;
+	int		x1;
+	int		y0;
+	int		y1;
+	int		z0;
+	int		z1;
+	int		dx;
+	int		dy;
+	int		dp1;
+	int		dp2;
+	int		sx;
+	int		sy;
+	int		pro;
+	int		dis;
+	int		dist;
+	int		zoom;
+	int		trans_x;
+	int		trans_y;
+	int		alt;
+	int		col;
+	int		c;
+	int		rot;
 	double	a;
 	double	b;
 	double	g;
-	int	rx;
-	int ry;
-	int	rz;
+	int		rx;
+	int		ry;
+	int		rz;
 }				t_draw;
 
 typedef struct s_win
@@ -112,4 +112,5 @@ void	iso(t_draw *draw);
 void	distance(t_draw *draw, t_data *data);
 void	rotation(t_draw *draw);
 void	ft_put_str_to_win(t_win *win);
+
 #endif
