@@ -12,19 +12,24 @@
 
 #include "fdf.h"
 
+void	bres(t_data *data, t_draw *draw, t_win *win)
+{
+	if ((draw->x0 > 0 && draw->x0 < 1920)
+		&& (draw->y0 > 0 && draw->y0 < 1080) && draw->col)
+		my_mlx_pixel_put(win, draw->x0,
+			draw->y0, data->c[draw->y][draw->x] * draw->c);
+	else if ((draw->x0 > 0 && draw->x0 < 1920)
+		&& (draw->y0 > 0 && draw->y0 < 1080))
+		my_mlx_pixel_put(win, draw->x0,
+			draw->y0, data->c[draw->y][draw->x]);
+}
+
 void	bresenham(t_data *data, t_draw *draw, t_win *win, int b)
 {
 	init(draw, data, b);
 	while (1)
 	{
-		if ((draw->x0 > 0 && draw->x0 < 1920)
-			&& (draw->y0 > 0 && draw->y0 < 1080) && draw->col)
-			my_mlx_pixel_put(win, draw->x0,
-				draw->y0, data->c[draw->y][draw->x] * draw->c);
-		else if ((draw->x0 > 0 && draw->x0 < 1920)
-			&& (draw->y0 > 0 && draw->y0 < 1080))
-			my_mlx_pixel_put(win, draw->x0,
-				draw->y0, data->c[draw->y][draw->x]);
+		bres(data, draw, win);
 		if (draw->x0 == draw->x1 && draw->y0 == draw->y1)
 			break ;
 		draw->dp2 = 2 * draw->dp1;

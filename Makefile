@@ -6,7 +6,7 @@
 #    By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 01:09:42 by orekabe           #+#    #+#              #
-#    Updated: 2022/07/03 03:46:50 by orekabe          ###   ########.fr        #
+#    Updated: 2022/07/03 18:54:30 by orekabe          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ HEADER = fdf.h
 SRC = bresenham.c center.c distance.c fdf.c ft_allocate.c ft_atoi.c ft_draw_map.c ft_fill_data.c ft_find_c.c ft_free_data.c \
 		ft_get_line_size.c ft_get_lmap.c ft_get_map_size.c ft_get_win.c ft_isdigit.c ft_ishexa.c ft_put_error.c ft_split.c \
 		ft_strdup.c ft_strlen.c ft_substr.c ft_xtoi.c get_next_line_utils.c get_next_line.c init.c iso.c my_mlx_pixel_put.c rotation.c \
-		add_to_win.c
+		add_to_win.c zoom.c translate.c projection.c altitude.c rot_hooks.c bonus.c
 		
 OBJ = $(SRC:.c=.o)
 
