@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:12:44 by orekabe           #+#    #+#             */
-/*   Updated: 2022/07/01 19:52:44 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/07/03 00:08:00 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_draw
 {
 	int	x;
 	int	y;
+	int z;
 	int	x0;
 	int	x1;
 	int	y0;
@@ -51,10 +52,20 @@ typedef struct s_draw
 	int	sy;
 	int	pro;
 	int	dis;
+	int	dist;
 	int zoom;
 	int trans_x;
 	int trans_y;
 	int alt;
+	int col;
+	int	c;
+	int	rot;
+	double	a;
+	double	b;
+	double	g;
+	int	rx;
+	int ry;
+	int	rz;
 }				t_draw;
 
 typedef struct s_win
@@ -99,5 +110,6 @@ void	init(t_draw *draw, t_data *data, int b);
 void	center(t_draw *draw);
 void	iso(t_draw *draw);
 void	distance(t_draw *draw, t_data *data);
+void	rotation(t_draw *draw);
 
 #endif

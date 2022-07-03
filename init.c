@@ -6,7 +6,7 @@
 /*   By: orekabe <orekabe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 01:11:30 by orekabe           #+#    #+#             */
-/*   Updated: 2022/07/01 20:15:09 by orekabe          ###   ########.fr       */
+/*   Updated: 2022/07/03 01:45:58 by orekabe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ void	init(t_draw *draw, t_data *data, int b)
 	draw->z1 = data->z[draw->y1][draw->x1];
 	if (draw->alt)
 	{
-		draw->z0 *= draw->alt;
-		draw->z1 *= draw->alt;
+		draw->z0 *= draw->z;
+		draw->z1 *= draw->z;
 	}
 	distance(draw, data);
+	if (draw->rot)
+		rotation(draw);
 	if (draw->pro)
 		iso(draw);
 	center(draw);
