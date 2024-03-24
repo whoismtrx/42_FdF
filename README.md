@@ -15,7 +15,7 @@ The project is written in `C` and uses the `minilibx` library for the graphical 
 To start the project, run the following commands:
 
 ```
-git clone https://github.com/whoismtrx/42_push_swap.git fdf
+git clone https://github.com/whoismtrx/42_FdF.git fdf
 cd fdf
 make
 ```
