@@ -1,6 +1,6 @@
 # FdF
 
-![](https://github.com/whoismtrx/42_minitalk/blob/main/gifs/fdf.gif)
+![](https://github.com/whoismtrx/42_FdF/blob/main/gifs/fdf.gif)
 
 ## Overview
 
@@ -25,22 +25,22 @@ make
 ```
 ./fdf maps/42.fdf
 ```
-![](https://github.com/whoismtrx/42_minitalk/blob/main/gifs/42.gif)
+![](https://github.com/whoismtrx/42_FdF/blob/main/gifs/42.gif)
 
 ```
 ./fdf maps/julia.fdf
 ```
-![](https://github.com/whoismtrx/42_minitalk/blob/main/gifs/julia.gif)
+![](https://github.com/whoismtrx/42_FdF/blob/main/gifs/julia.gif)
 
 ```
 ./fdf maps/elem-frac.fdf
 ```
-![](https://github.com/whoismtrx/42_minitalk/blob/main/gifs/fract.gif)
+![](https://github.com/whoismtrx/42_FdF/blob/main/gifs/fract.gif)
 
 ```
 ./fdf maps/t1.fdf
 ```
-![](https://github.com/whoismtrx/42_minitalk/blob/main/gifs/t1.gif)
+![](https://github.com/whoismtrx/42_FdF/blob/main/gifs/t1.gif)
 
 ## Implementation
 
@@ -64,4 +64,4 @@ Overall, FdF is a project that combines the use of the minilibx library, data pa
 - [Isometric Projection](https://pikuma.com/blog/isometric-projection-in-games)
 - [Rotation Matrix](https://en.wikipedia.org/wiki/Rotation_matrix)
 - [Key Codes]()
-![](https://github.com/whoismtrx/42_minitalk/blob/main/gifs/keys.png)
+![](https://github.com/whoismtrx/42_FdF/blob/main/gifs/keys.png)
