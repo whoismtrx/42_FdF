@@ -18,24 +18,43 @@ MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 NAME = fdf
 
-HEADER = fdf.h
+HEADER = -I./include
 
-SRC = bresenham.c center.c distance.c fdf.c ft_allocate.c ft_atoi.c ft_draw_map.c ft_fill_data.c ft_find_c.c ft_free_data.c \
-		ft_get_line_size.c ft_get_lmap.c ft_get_map_size.c ft_get_win.c ft_isdigit.c ft_ishexa.c ft_put_error.c ft_split.c \
-		ft_strdup.c ft_strlen.c ft_substr.c ft_xtoi.c get_next_line_utils.c get_next_line.c init.c iso.c my_mlx_pixel_put.c rotation.c \
-		add_to_win.c zoom.c translate.c projection.c altitude.c rot_hooks.c bonus.c
+SRCD = ./src
+
+OBJD = ./objs
+
+SRC = $(SRCD)/bresenham.c $(SRCD)/center.c $(SRCD)/distance.c $(SRCD)/fdf.c $(SRCD)/ft_allocate.c $(SRCD)/ft_atoi.c $(SRCD)/ft_draw_map.c $(SRCD)/ft_fill_data.c $(SRCD)/ft_find_c.c $(SRCD)/ft_free_data.c \
+		$(SRCD)/ft_get_line_size.c $(SRCD)/ft_get_lmap.c $(SRCD)/ft_get_map_size.c $(SRCD)/ft_get_win.c $(SRCD)/ft_isdigit.c $(SRCD)/ft_ishexa.c $(SRCD)/ft_put_error.c $(SRCD)/ft_split.c \
+		$(SRCD)/ft_strdup.c $(SRCD)/ft_strlen.c $(SRCD)/ft_substr.c $(SRCD)/ft_xtoi.c $(SRCD)/get_next_line_utils.c $(SRCD)/get_next_line.c $(SRCD)/init.c $(SRCD)/iso.c $(SRCD)/my_mlx_pixel_put.c $(SRCD)/rotation.c \
+		$(SRCD)/add_to_win.c $(SRCD)/zoom.c $(SRCD)/translate.c $(SRCD)/projection.c $(SRCD)/altitude.c $(SRCD)/rot_hooks.c $(SRCD)/bonus.c
 		
-OBJ = $(SRC:.c=.o)
+OBJ = $(addprefix $(OBJD)/, $(notdir $(SRC:.c=.o)))
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJ) -o $(NAME)
+	@printf "                                               \r"
+	@echo "	███████╗██████╗ ███████╗"
+	@echo "	██╔════╝██╔══██╗██╔════╝"
+	@echo "	█████╗  ██║  ██║█████╗  "
+	@echo "	██╔══╝  ██║  ██║██╔══╝  "
+	@echo "	██║     ██████╔╝██║     "
+	@echo "	╚═╝     ╚═════╝ ╚═╝     "
+	@echo "		BY: MTRX"
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJ) -o $@
+
+$(OBJD)/%.o: $(SRCD)/%.c
+	@mkdir -p $(OBJD)
+	@printf "                                               \r"
+	@printf "Compiling $<\r"
+	@$(CC) -c $(CFLAGS) $(HEADER) $< -o $@
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(OBJD)
 
 fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+     
